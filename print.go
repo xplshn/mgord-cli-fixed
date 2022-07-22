@@ -37,10 +37,10 @@ func ListPerms(p *permissions.AppImagePerms) {
 		List("devices", p.Devices, 11)
 		prettyListSockets("sockets", p.Sockets, 11)
 	} else {
-		clr.Println("  <cyan>level</>:      <lightYellow>0</>")
-		clr.Println("  <cyan>filesystem</>: <lightYellow>ALL</>")
-		clr.Println("  <cyan>devices</>:    <lightYellow>ALL</>")
-		clr.Println("  <cyan>sockets</>:    <lightYellow>ALL</>")
+		clr.Println("  level:      <lightYellow>0</>")
+		clr.Println("  filesystem: <lightYellow>ALL</>")
+		clr.Println("  devices:    <lightYellow>ALL</>")
+		clr.Println("  sockets:    <lightYellow>ALL</>")
 	}
 }
 
