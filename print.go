@@ -122,41 +122,28 @@ func prettyListFiles(a ...interface{}) {
 }
 
 // Like `prettyList` but highlights dangerous sockets in orange
-func prettyListSockets(a ...interface{}) {
+func prettyListSockets(name string, a []permissions.Socket, n int) {
+	fmt.Printf("  %s:", name)
+
+	for i := len(name); i < n; i++ {
+		fmt.Print(" ")
+	}
+
+	clr.Gray.Print("[")
 	for i := range(a) {
-		if i == 0 {
-			fmt.Printf("  %s:", a[0])
-			continue
-		} else if i == len(a)-1 {
-			break	
+		socketString := string(a[i])
+
+		if i > 0 {
+			clr.Gray.Print(", ")
 		}
+		socketString = strings.Replace(socketString, xdg.Home, "~", 1)
 
-		// pad with spaces until the requested lengh is reached
-		n := a[len(a)-1].(int)
-		str := a[0].(string)
-		for i := len(str); i < n; i++ {
-			fmt.Print(" ")
-		}
-
-		switch v := a[i].(type) {
-		default:
-			panic("invalid type!")
-		case []string:
-			clr.Gray.Print("[")
-			for i := range(v) {
-				if i > 0 {
-					clr.Gray.Print(", ")
-				}
-				v[i] = strings.Replace(v[i], xdg.Home, "~", 1)
-
-				if v[i] == "session" || v[i] == "x11" {
-					clr.Printf("<lightYellow>%s</>", v[i])
-				} else {
-					clr.Printf("<green>%s</>", v[i])
-				}
-			}
-			clr.Gray.Println("]")
+		if a[i] == permissions.Session || a[i] == permissions.X11 {
+			clr.Printf("<lightYellow>%s</>", a[i])
+		} else {
+			clr.Printf("<green>%s</>", a[i])
 		}
 	}
 
+	clr.Gray.Println("]")
 }
