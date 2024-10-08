@@ -62,7 +62,7 @@ func List(a ...interface{}) {
 
 		switch v := a[i].(type) {
 		default:
-			panic("invalid type!")
+			panic("invalid type!!")
 		case string:
 			clr.Printf(" <green>%s</>\n", a[i])
 		case []string:
