@@ -10,10 +10,10 @@ import (
 	"strings"
 	"path/filepath"
 
-	check   "github.com/mgord9518/aisap/spooky"
+	check   "github.com/xplshn/aisap/spooky"
 	clr     "github.com/gookit/color"
 	xdg     "github.com/adrg/xdg"
-	permissions "github.com/mgord9518/aisap/permissions"
+	permissions "github.com/xplshn/aisap/permissions"
 )
 
 func makeDevPretty(str string) string {
